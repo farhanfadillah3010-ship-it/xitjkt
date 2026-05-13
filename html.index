@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Kelas XI TJKT | SMK Bina Sejahtera 1</title>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #1b4332;
+            --premium-green: #2d6a4f;
+            --accent-green: #74c69d;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --text-dark: #2d3436;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* Dark Mode Colors */
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--white);
+        }
+        body.dark-mode .card, body.dark-mode table, body.dark-mode nav {
+            background-color: var(--dark-card);
+            color: var(--white);
+        }
+        body.dark-mode .section-title { color: var(--accent-green); }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        /* --- Header & Hero --- */
+        header {
+            height: 60vh;
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(27, 67, 50, 0.95)), 
+                        url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-title { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; letter-spacing: 2px; }
+        .hero-subtitle { font-size: 1.5rem; opacity: 0.9; margin-bottom: 10px; }
+        .slogan { font-size: 1rem; letter-spacing: 5px; color: var(--accent-green); text-transform: uppercase; }
+
+        /* --- Navbar --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li a {
+            text-decoration: none;
+            color: inherit;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links li a:hover { color: var(--premium-green); }
+
+        .theme-toggle { cursor: pointer; font-size: 1.2rem; margin-left: 20px; }
+
+        /* --- Section Styling --- */
+        section { padding: 80px 10%; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-green);
+        }
+
+        /* --- Structure Cards --- */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-bottom: 5px solid transparent;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-bottom: 5px solid var(--premium-green);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--accent-green);
+        }
+
+        .card h3 { margin-bottom: 5px; color: var(--premium-green); }
+        .card .role { font-weight: 600; font-size: 0.9rem; color: #666; margin-bottom: 15px; display: block; }
+        .card .quote { font-style: italic; font-size: 0.85rem; color: #888; }
+
+        /* --- Table Styling --- */
+        .table-container { overflow-x: auto; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        th, td { padding: 18px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: var(--primary-green); color: white; }
+        tr:hover { background: rgba(116, 198, 157, 0.1); }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(70%); }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary-green);
+            color: white;
+            padding: 50px 10%;
+            text-align: center;
+        }
+        .social-icons { margin-top: 20px; }
+        .social-icons a { color: white; font-size: 1.5rem; margin: 0 10px; transition: var(--transition); }
+        .social-icons a:hover { color: var(--accent-green); }
+
+        /* --- Back to Top --- */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--premium-green);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        /* --- Animations --- */
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 20px; }
+            .nav-links { margin-top: 15px; font-size: 0.9rem; }
+            .hero-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="hero-title">Struktur Kelas XI TJKT</h1>
+        <p class="hero-subtitle">SMK Bina Sejahtera 1</p>
+        <span class="slogan">Solid • Disiplin • Profesional</span>
+    </header>
+
+    <nav id="navbar">
+        <div class="logo"><strong>TJKT</strong> Bise 1</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#struktur">Struktur</a></li>
+            <li><a href="#jadwal">Jadwal</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <div class="theme-toggle" id="themeBtn">
+            <i class="fas fa-moon"></i>
+        </div>
+    </nav>
+
+    <section id="struktur">
+        <h2 class="section-title">Struktur Organisasi</h2>
+        <div class="structure-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=11" alt="Ketua" class="profile-img">
+                <h3>Ahmad Fauzi</h3>
+                <span class="role">Ketua Kelas</span>
+                <p class="quote">"Memimpin dengan teladan, bukan dengan perintah."</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=12" alt="Wakil" class="profile-img">
+                <h3>Siti Aminah</h3>
+                <span class="role">Wakil Ketua</span>
+                <p class="quote">"Sinergi adalah kunci kesuksesan bersama."</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=5" alt="Sekretaris" class="profile-img">
+                <h3>Budi Santoso</h3>
+                <span class="role">Sekretaris</span>
+                <p class="quote">"Ketelitian adalah awal dari kerapihan."</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=10" alt="Bendahara" class="profile-img">
+                <h3>Lestari Putri</h3>
+                <span class="role">Bendahara</span>
+                <p class="quote">"Satu rupiah pun sangat berharga."</p>
+            </div>
+            <!-- Sie Items -->
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=13" alt="Kebersihan" class="profile-img">
+                <h3>Rizky Ramadhan</h3>
+                <span class="role">Sie Kebersihan</span>
+                <p class="quote">"Kebersihan sebagian dari iman dan kenyamanan."</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=15" alt="Keamanan" class="profile-img">
+                <h3>Andi Wijaya</h3>
+                <span class="role">Sie Keamanan</span>
+                <p class="quote">"Tetap tenang dan jaga kondusivitas."</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=17" alt="Peralatan" class="profile-img">
+                <h3>Dimas Pratama</h3>
+                <span class="role">Sie Peralatan</span>
+                <p class="quote">"Alat siap, praktek lancar."</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pravatar.cc/150?img=20" alt="Konsumsi" class="profile-img">
+                <h3>Indah Permata</h3>
+                <span class="role">Sie Konsumsi</span>
+                <p class="quote">"Energi cukup, belajar pun fokus."</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="jadwal" style="background: var(--light-gray);">
+        <h2 class="section-title">Jadwal Piket Kelas</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Senin</th>
+                        <th>Selasa</th>
+                        <th>Rabu</th>
+                        <th>Kamis</th>
+                        <th>Jumat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ahmad, Siti, Budi</td>
+                        <td>Lestari, Rizky, Andi</td>
+                        <td>Dimas, Indah, Maya</td>
+                        <td>Raka, Doni, Sari</td>
+                        <td>Gema, Fadel, Rani</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="galeri">
+        <h2 class="section-title">Galeri Kegiatan</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&q=80" alt="Kegiatan 1"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80" alt="Kegiatan 2"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80" alt="Kegiatan 3"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80" alt="Kegiatan 4"></div>
+        </div>
+    </section>
+
+    <footer id="kontak">
+        <p>&copy; 2026 XI TJKT - SMK Bina Sejahtera 1. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // --- Dark Mode Toggle ---
+        const themeBtn = document.getElementById('themeBtn');
+        const body = document.body;
+        const icon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // --- Scroll Reveal Animation ---
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // --- Back To Top Logic ---
+        const backToTop = document.getElementById('backToTop');
+        window.onscroll = () => {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        };
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
